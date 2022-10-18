@@ -1,5 +1,4 @@
 import axios from "axios";
-import { response } from "msw";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -32,15 +31,14 @@ const SummaryForm = ({ setOrderPhase }) => {
 
   const popover = (
     <Popover id="popover-basic">
-      <Popover.Header as="h3">Popover right</Popover.Header>
       <Popover.Body>No ice cream will actually be delivered</Popover.Body>
     </Popover>
   );
 
   const chLabel = (
     <span>
-      I agree to{" "}
-      <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+      I agree to
+      <OverlayTrigger placement="right" overlay={popover}>
         <span style={{ color: "blue" }}>Terms and Conditions</span>
       </OverlayTrigger>
     </span>
@@ -58,7 +56,7 @@ const SummaryForm = ({ setOrderPhase }) => {
       <Button
         variant="primary"
         type="submit"
-        class="btn btn-dark"
+        className="btn btn-dark"
         disabled={!disabled}
         onClick={handleClick}
       >

@@ -54,7 +54,7 @@ test("update topping subtotal when topping change", async () => {
 });
 
 describe("grand total,", () => {
-  test.skip("grand total starts at $0.00", () => {});
+  test("grand total starts at $0.00", () => {});
 
   test("grand total updates properly if scoop is added first", async () => {
     render(<OrderEntry />);

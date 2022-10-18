@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useOrderNumber } from "../../context/OrderNumber";
 import { useOrderDetails } from "../../context/OrderDetails";
 import Button from "react-bootstrap/Button";

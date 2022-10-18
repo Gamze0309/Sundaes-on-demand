@@ -1,9 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import SummaryForm from "../summaryForm";
 import userEvent from "@testing-library/user-event";
+import { OrderNumberProvider } from "../../../context/OrderNumber";
 
 test("checkbox and button have correct initial value", () => {
-  render(<SummaryForm />);
+  render(<SummaryForm />, { wrapper: OrderNumberProvider });
   // Find checkbox by it's name
   const checkbox = screen.getByRole("checkbox", {
     name: /terms and conditions/i,
@@ -17,23 +18,25 @@ test("checkbox and button have correct initial value", () => {
   expect(button).toBeDisabled();
 });
 
-test("button enabled after that checkbox checked", () => {
-  render(<SummaryForm />);
+test("button enabled after that checkbox checked", async () => {
+  const user = userEvent.setup();
+  render(<SummaryForm />, { wrapper: OrderNumberProvider });
 
   const checkbox = screen.getByRole("checkbox", {
     name: /terms and conditions/i,
   });
   const button = screen.getByRole("button", { name: /confirm order/i });
 
-  userEvent.click(checkbox);
+  await user.click(checkbox);
   expect(button).toBeEnabled();
 
-  userEvent.click(checkbox);
+  await user.click(checkbox);
   expect(button).toBeDisabled();
 });
 
-test("popover responds to hover", () => {
-  render(<SummaryForm />);
+test("popover responds to hover", async () => {
+  const user = userEvent.setup();
+  render(<SummaryForm />, { wrapper: OrderNumberProvider });
 
   //popover starts out hidden
   const nullPopover = screen.queryByText(
@@ -43,13 +46,13 @@ test("popover responds to hover", () => {
 
   //popover appears upon mouseover of checkbox label
   const termsAndConditions = screen.getByText(/terms and conditions/i);
-  userEvent.hover(termsAndConditions);
+  await user.hover(termsAndConditions);
 
-  const popover = screen.getByText(/No ice cream will actually be delivered/i);
+  const popover = screen.getByText(/o ice cream will actually be delivered/i);
   expect(popover).toBeInTheDocument();
 
   //popover disappears when we mouse out
-  userEvent.unhover(termsAndConditions);
+  await user.unhover(termsAndConditions);
   const nullPopoverAgain = screen.queryByText(
     /no ice cream will actually be delivered/i
   );

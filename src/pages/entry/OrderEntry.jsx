@@ -14,7 +14,7 @@ export default function OrderEntry({ setOrderPhase }) {
       <Button
         variant="primary"
         type="submit"
-        class="btn btn-dark"
+        className="btn btn-dark"
         onClick={() => setOrderPhase("review")}
       >
         Order Sundae!

@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import OrderEntry from "./pages/entry/OrderEntry";
 import { OrderDetailsProvider } from "./context/OrderDetails";
+import { OrderNumberProvider } from "./context/OrderNumber";
 import OrderConfirmation from "./pages/complete/OrderConfirmation";
 import OrderSummary from "./pages/summary/OrderSummary";
 import { useState } from "react";
@@ -24,7 +25,9 @@ function App() {
   }
   return (
     <OrderDetailsProvider>
-      <Container>{<Component setOrderPhase={setOrderPhase} />}</Container>
+      <OrderNumberProvider>
+        <Container>{<Component setOrderPhase={setOrderPhase} />}</Container>
+      </OrderNumberProvider>
     </OrderDetailsProvider>
   );
 }
