@@ -1,4 +1,4 @@
-# It's Sundaes order project writen with test
+# It's Sundaes order project writen with test driven development
 
 Before run, you must download the server (https://github.com/Gamze0309/udemy-TESTING-LIBRARY) and run with 'npm run' script in the sundaes-server folder directory.
 
